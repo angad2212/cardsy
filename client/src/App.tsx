@@ -11,6 +11,7 @@ import Account from "./pages/Account";
 import Practice from "./pages/Practice";
 import DeckManagement from "./pages/DeckManagement";
 import UserProfile from "./pages/UserProfile";
+import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          <Route path="/auth" element={<Auth />} />
           <Route path="/" element={<Index />} />
           <Route path="/decks" element={<Decks />} />
           <Route path="/deck/:deckId" element={<DeckManagement />} />
