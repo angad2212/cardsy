@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 // Sample data
 const GLOBAL_LEADERBOARD = Array.from({ length: 10 }, (_, i) => ({
   rank: i + 1,
+  id: i + 1,
   username: `Student${i + 1}`,
   xp: 5000 - i * 400,
   accuracy: 95 - i * 2,
@@ -78,12 +79,14 @@ const POPULAR_DECKS = [
 const DECK_LEADERBOARDS = {
   1: Array.from({ length: 10 }, (_, i) => ({
     rank: i + 1,
+    id: 100 + i + 1,
     username: `Linguist${i + 1}`,
     xp: 3000 - i * 250,
     accuracy: 98 - i * 2,
   })),
   2: Array.from({ length: 10 }, (_, i) => ({
     rank: i + 1,
+    id: 200 + i + 1,
     username: `Coder${i + 1}`,
     xp: 2800 - i * 230,
     accuracy: 96 - i * 2,

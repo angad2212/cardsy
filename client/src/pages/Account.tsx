@@ -1,11 +1,12 @@
 import { Navigation } from "@/components/Navigation";
+import { Badges, SAMPLE_BADGES } from "@/components/Badges";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
-import { User, Mail, Shield, Bell, Palette } from "lucide-react"; 
+import { User, Mail, Shield, Bell, Palette, Trophy } from "lucide-react"; 
 
 const Account = () => { 
   return (
@@ -160,6 +161,15 @@ const Account = () => {
               <p className="text-sm text-muted-foreground">Cards Mastered</p>
             </div>
           </div>
+        </div>
+
+        {/* Badges Section */}
+        <div className="bg-card p-6 rounded-xl border border-border shadow-card">
+          <div className="flex items-center gap-3 mb-6">
+            <Trophy className="w-5 h-5 text-primary" />
+            <h2 className="text-2xl font-bold">Achievements</h2>
+          </div>
+          <Badges badges={SAMPLE_BADGES} />
         </div>
       </div>
     </div>

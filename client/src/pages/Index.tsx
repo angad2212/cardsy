@@ -6,6 +6,8 @@ import { StreakCounter } from "@/components/StreakCounter";
 import { Heatmap } from "@/components/Heatmap";
 import { DeckCard } from "@/components/DeckCard";
 import { StatCard } from "@/components/StatCard";
+import { SAMPLE_BADGES } from "@/components/Badges";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Brain, Target, Trophy, Zap } from "lucide-react";
 
 // Sample data
@@ -132,6 +134,39 @@ const Index = () => {
 
         {/* Heatmap */}
         <Heatmap data={heatmapData} />
+
+        {/* Recent Badges Section */}
+        <section>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-foreground">Recent Achievements</h2>
+            <button 
+              onClick={() => navigate("/account")}
+              className="text-sm text-primary hover:text-primary/80 transition-colors"
+            >
+              View All →
+            </button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {SAMPLE_BADGES.filter(badge => badge.earned).slice(0, 5).map((badge) => (
+              <div key={badge.id} className="bg-card p-4 rounded-xl border border-border shadow-card hover:shadow-elevated transition-all group">
+                <div className="text-center space-y-3">
+                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mx-auto group-hover:scale-110 transition-transform">
+                    {badge.icon}
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm text-foreground mb-1">{badge.name}</h3>
+                    <p className="text-xs text-muted-foreground line-clamp-2">{badge.description}</p>
+                    {badge.earnedDate && (
+                      <p className="text-xs text-primary mt-2">
+                        {new Date(badge.earnedDate).toLocaleDateString()}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Decks Section */}
         <section>

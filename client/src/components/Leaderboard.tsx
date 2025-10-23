@@ -1,4 +1,5 @@
 import { Trophy, Medal, Award } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface LeaderboardEntry {
   rank: number;
@@ -6,6 +7,7 @@ interface LeaderboardEntry {
   xp: number;
   accuracy: number;
   avatar?: string;
+  id?: number;
 }
 
 interface LeaderboardProps {
@@ -15,11 +17,19 @@ interface LeaderboardProps {
 }
 
 export const Leaderboard = ({ entries, title = "Leaderboard" }: LeaderboardProps) => {
+  const navigate = useNavigate();
+
   const getRankIcon = (rank: number) => {
     if (rank === 1) return <Trophy className="w-5 h-5 text-primary" />;
     if (rank === 2) return <Medal className="w-5 h-5 text-muted-foreground" />;
     if (rank === 3) return <Award className="w-5 h-5 text-secondary" />;
     return <span className="text-muted-foreground font-semibold">{rank}</span>;
+  };
+
+  const handleUserClick = (entry: LeaderboardEntry) => {
+    // Use the entry's id if available, otherwise use the rank as a fallback
+    const userId = entry.id || entry.rank;
+    navigate(`/user/${userId}`);
   };
 
   return (
@@ -29,7 +39,8 @@ export const Leaderboard = ({ entries, title = "Leaderboard" }: LeaderboardProps
         {entries.map((entry) => (
           <div
             key={entry.rank}
-            className="flex items-center gap-4 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
+            onClick={() => handleUserClick(entry)}
+            className="flex items-center gap-4 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors cursor-pointer hover:shadow-sm"
           >
             <div className="w-8 flex items-center justify-center">
               {getRankIcon(entry.rank)}

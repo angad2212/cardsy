@@ -7,11 +7,11 @@ interface HeatmapProps {
 export const Heatmap = ({ data }: HeatmapProps) => {
   const getIntensityClass = (count: number) => {
     if (count === 0) return "bg-muted";
-    if (count <= 2) return "bg-yellow-100"; // Very light/faded yellow
-    if (count <= 5) return "bg-yellow-200"; // Light yellow
+    if (count <= 2) return "bg-yellow-500"; // Dark yellow for less activity
+    if (count <= 5) return "bg-yellow-400"; // Medium-dark yellow
     if (count <= 10) return "bg-yellow-300"; // Medium yellow
-    if (count <= 15) return "bg-yellow-400"; // Dark yellow
-    return "bg-yellow-500"; // Darkest/most prominent yellow
+    if (count <= 15) return "bg-yellow-200"; // Light yellow
+    return "bg-yellow-100"; // Very light yellow for most activity
   };
 
   // Generate full year (365 days) - LeetCode style
@@ -69,11 +69,11 @@ export const Heatmap = ({ data }: HeatmapProps) => {
         <span>Less</span>
         <div className="flex gap-1">
           <div className="w-3 h-3 bg-muted rounded-sm" />
-          <div className="w-3 h-3 bg-yellow-100 rounded-sm" />
-          <div className="w-3 h-3 bg-yellow-200 rounded-sm" />
-          <div className="w-3 h-3 bg-yellow-300 rounded-sm" />
-          <div className="w-3 h-3 bg-yellow-400 rounded-sm" />
           <div className="w-3 h-3 bg-yellow-500 rounded-sm" />
+          <div className="w-3 h-3 bg-yellow-400 rounded-sm" />
+          <div className="w-3 h-3 bg-yellow-300 rounded-sm" />
+          <div className="w-3 h-3 bg-yellow-200 rounded-sm" />
+          <div className="w-3 h-3 bg-yellow-100 rounded-sm" />
         </div>
         <span>More</span>
       </div>
