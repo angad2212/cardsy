@@ -72,6 +72,10 @@ const Index = () => {
     navigate("/practice");
   };
 
+  const handleOpenDeck = (deckId: number) => {
+    navigate(`/deck/${deckId}`);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -143,6 +147,7 @@ const Index = () => {
                 lastPracticed={deck.lastPracticed}
                 accuracy={deck.accuracy}
                 onStart={handleStartPractice}
+                onOpen={() => handleOpenDeck(deck.id)}
               />
             ))}
           </div>

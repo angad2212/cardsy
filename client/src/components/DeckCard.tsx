@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Play, Clock } from "lucide-react";
+import { Play, Clock, FolderOpen } from "lucide-react";
 
 interface DeckCardProps {
   title: string;
@@ -9,6 +9,7 @@ interface DeckCardProps {
   lastPracticed?: string;
   accuracy?: number;
   onStart: () => void;
+  onOpen: () => void;
 }
 
 export const DeckCard = ({
@@ -19,6 +20,7 @@ export const DeckCard = ({
   lastPracticed,
   accuracy = 0,
   onStart,
+  onOpen,
 }: DeckCardProps) => {
   const getDifficultyColor = () => {
     if (accuracy >= 80) return "text-primary";
@@ -58,13 +60,23 @@ export const DeckCard = ({
           </div>
         )}
 
-        <Button 
-          onClick={onStart}
-          className="w-full bg-primary text-primary-foreground hover:bg-primary/90 group-hover:shadow-glow transition-all"
-        >
-          <Play className="w-4 h-4 mr-2" />
-          Start Session
-        </Button>
+        <div className="flex gap-2">
+          <Button 
+            onClick={onStart}
+            className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 group-hover:shadow-glow transition-all"
+          >
+            <Play className="w-4 h-4 mr-2" />
+            Start Session
+          </Button>
+          <Button 
+            onClick={onOpen}
+            variant="outline"
+            className="flex-1 border-border hover:bg-muted transition-all"
+          >
+            <FolderOpen className="w-4 h-4 mr-2" />
+            Open Deck
+          </Button>
+        </div>
       </div>
     </div>
   );
