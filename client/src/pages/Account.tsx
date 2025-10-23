@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { User, Mail, Shield, Bell, Palette } from "lucide-react"; 
 
-const Account = () => {
+const Account = () => { 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
