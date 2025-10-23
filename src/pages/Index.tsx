@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Navigation } from "@/components/Navigation";
 import { XPBar } from "@/components/XPBar";
 import { StreakCounter } from "@/components/StreakCounter";
 import { Heatmap } from "@/components/Heatmap";
@@ -12,9 +13,9 @@ const generateHeatmapData = () => {
   const data = [];
   const today = new Date();
   
-  for (let i = 0; i < 84; i++) {
+  for (let i = 0; i < 365; i++) {
     const date = new Date(today);
-    date.setDate(date.getDate() - (84 - i));
+    date.setDate(date.getDate() - (365 - i));
     data.push({
       date: date.toISOString().split('T')[0],
       count: Math.floor(Math.random() * 20),
@@ -72,8 +73,10 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      
+      <div className="max-w-7xl mx-auto p-6 space-y-8">
         {/* Header */}
         <header className="flex items-center justify-between">
           <div>
@@ -128,9 +131,9 @@ const Index = () => {
 
         {/* Decks Section */}
         <section>
-          <h2 className="text-2xl font-bold text-foreground mb-6">Your Decks</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-6">Your Recent Decks</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SAMPLE_DECKS.map((deck) => (
+            {SAMPLE_DECKS.slice(0, 3).map((deck) => (
               <DeckCard
                 key={deck.id}
                 title={deck.title}
